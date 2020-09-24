@@ -1,0 +1,19 @@
+{
+  "name": "wp4-project1",
+  "version": "1.0.0",
+  "description": "Első beadandó",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run open",
+    "open": "concurrently \"node server.js\" \"xdg-open http://localhost:3000/\"",
+    "test": "test"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
