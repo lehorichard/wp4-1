@@ -4,7 +4,9 @@ const port = 3000
 const path = require('path')
 const fs = require('fs/promises')
 
+app.use('/', express.static('public'))
 const cells = ['recommendedTags', 'specialRecommendedTags','orignalTags',  'title', 'content']
+const substrings = ['genre__', 'year__', 'author__']
 
 async function loadData() {
     const data = await fs.readFile('data.txt', 'utf8')    
@@ -18,7 +20,7 @@ async function loadData() {
                 //const skipper = i  ?  1 : 0
                 for (let k = 0; k <  currentColumn.length; k += 2) {   
                     let scoredTag = {
-                        'name': currentColumn[k],
+                        'name': currentColumn[k].replace('__label__', '').split('@@').join(' '),
                         'score': currentColumn[k+1]
                     }
                     tags.push(scoredTag)
@@ -26,8 +28,9 @@ async function loadData() {
                 obj[cells[i]] = tags                    
             } else if (i === 2) {
                 let tags = []
-                for (let k = 0; k < currentColumn.length; k++) 
-                    tags.push(currentColumn[k])
+                for (let k = 0; k < currentColumn.length; k++)
+                    if (!substrings.some(s => currentColumn[k].includes(s)))
+                        tags.push(currentColumn[k].replace('__label__', '').split('@@').join(' '))
                 obj[cells[i]] = tags
             }
             else 
@@ -39,7 +42,7 @@ async function loadData() {
 }
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + "/index.html"))
+    res.sendFile(path.join(__dirname + "/public/index.html"))
 })
 
 app.get('/style.css',  (req, res) => {
