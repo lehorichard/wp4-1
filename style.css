@@ -2,3 +2,19 @@ h1 {
     color: blueviolet;
     text-align: center;
 }
+
+datalist {
+    position: absolute;
+  background-color: lightgrey;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+}
+select option {
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+#title-selector {
+    width: 80%;
+    
+}
