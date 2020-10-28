@@ -4,7 +4,7 @@
   "description": "Első beadandó",
   "main": "index.js",
   "scripts": {
-    "start": "npm run open",
+    "start": "node server.js",
     "open": "concurrently \"nodemon server.js\" \"xdg-open http://localhost:3000/\"",
     "test": "test"
   },
