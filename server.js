@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const path = require('path')
-const fs = require('fs/promises')
+const fs = require('fs').promises
 
 app.use('/', express.static('public'))
 const cells = ['recommendedTags', 'specialRecommendedTags','orignalTags',  'title', 'content']
